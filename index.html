@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haven | Premium Hotel Management</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Background Design -->
+    <div class="bg-shape circle-1"></div>
+    <div class="bg-shape circle-2"></div>
+    <div class="bg-shape circle-3"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-door-open gradient-text"></i>
+                <span>HAVEN</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-btn active" data-target="home">Home</a></li>
+                <li><a href="#" class="nav-btn" data-target="rooms">Rooms</a></li>
+                <li><a href="#" class="nav-btn" data-target="booking">Book Now</a></li>
+                <li><a href="#" class="nav-btn" data-target="admin">Admin Panel</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <i class="fa-solid fa-bars" id="mobile-menu-icon"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="app-content">
+
+        <!-- ================= HOME SECTION ================= -->
+        <section id="home" class="page-section active animate-fade-in">
+            <div class="hero">
+                <div class="hero-content glass-panel">
+                    <h1 class="hero-title">Book Your <br><span class="gradient-text">Perfect Stay</span></h1>
+                    <p class="hero-subtitle">Experience luxury and comfort in our premium glass-inspired rooms. Book
+                        your escape today.</p>
+                    <button class="btn btn-primary cta-btn nav-btn" data-target="rooms">
+                        Explore Rooms <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="featured-wrapper">
+                <h2 class="section-title"><i class="fa-solid fa-star gradient-text"></i> Featured Accommodations</h2>
+                <div class="featured-grid" id="featured-rooms-container">
+                    <!-- Dynamic Featured Rooms will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ROOMS SECTION ================= -->
+        <section id="rooms" class="page-section animate-fade-in" style="display: none;">
+            <div class="section-header glass-panel">
+                <h2 class="section-title">Our <span class="gradient-text">Suites</span> & Rooms</h2>
+                <p>Choose from our selection of premium accommodations tailored for your comfort.</p>
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="All">All Rooms</button>
+                    <button class="filter-btn" data-filter="Deluxe">Deluxe</button>
+                    <button class="filter-btn" data-filter="Suite">Suite</button>
+                    <button class="filter-btn" data-filter="Standard">Standard</button>
+                </div>
+            </div>
+
+            <div class="rooms-grid" id="rooms-container">
+                <!-- Room Cards rendered via JS -->
+            </div>
+        </section>
+
+        <!-- ================= BOOKING SECTION ================= -->
+        <section id="booking" class="page-section animate-fade-in" style="display: none;">
+            <div class="booking-container glass-panel">
+                <div class="booking-header">
+                    <h2><i class="fa-regular fa-calendar-check gradient-text"></i> Reserve Your Stay</h2>
+                    <p>Fill out the form below to secure your room.</p>
+                </div>
+
+                <form id="booking-form" class="booking-form">
+                    <div class="form-group">
+                        <label for="guest-name"><i class="fa-regular fa-user"></i> Full Name</label>
+                        <input type="text" id="guest-name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="check-in"><i class="fa-regular fa-calendar-days"></i> Check-in Date</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="form-group half">
+                            <label for="check-out"><i class="fa-regular fa-calendar-days"></i> Check-out Date</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="room-type"><i class="fa-solid fa-bed"></i> Room Type</label>
+                            <select id="room-type" required>
+                                <option value="" disabled selected>Select a room type...</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Deluxe">Deluxe</option>
+                                <option value="Suite">Suite</option>
+                            </select>
+                        </div>
+                        <div class="form-group half">
+                            <label for="guests-count"><i class="fa-solid fa-users"></i> Number of Guests</label>
+                            <input type="number" id="guests-count" min="1" max="6" value="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-summary glass-panel-inner" id="booking-summary">
+                        <p>Total Price Estimation</p>
+                        <h3 id="price-estimate" class="gradient-text">₹0.00</h3>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <i class="fa-solid fa-check"></i> Confirm Booking
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= ADMIN DASHBOARD ================= -->
+        <section id="admin" class="page-section animate-fade-in" style="display: none;">
+            <div class="admin-header glass-panel">
+                <h2>Admin <span class="gradient-text">Dashboard</span></h2>
+                <div class="admin-actions">
+                    <button class="btn btn-danger" id="reset-data-btn"><i class="fa-solid fa-rotate-right"></i> Reset
+                        Data</button>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon cyan"><i class="fa-solid fa-bed"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Rooms</h3>
+                        <p id="stat-total-rooms">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon green"><i class="fa-solid fa-door-open"></i></div>
+                    <div class="stat-info">
+                        <h3>Available</h3>
+                        <p id="stat-available-rooms">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon orange"><i class="fa-solid fa-ban"></i></div>
+                    <div class="stat-info">
+                        <h3>Occupied</h3>
+                        <p id="stat-occupied-rooms">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon purple"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div class="stat-info">
+                        <h3>Revenue</h3>
+                        <p id="stat-revenue" class="gradient-text">₹0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tables">
+                <div class="table-container glass-panel">
+                    <div class="table-header">
+                        <h3><i class="fa-solid fa-list-check"></i> Recent Bookings</h3>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Guest Name</th>
+                                    <th>Room Type</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookings-table-body">
+                                <!-- Bookings populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="table-container glass-panel gap-top">
+                    <div class="table-header">
+                        <h3><i class="fa-solid fa-hotel"></i> Room Status Management</h3>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Room ID</th>
+                                    <th>Type</th>
+                                    <th>Price/Night</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rooms-status-table-body">
+                                <!-- Room status populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-toggle glass-btn" id="chatbot-toggle">
+            <i class="fa-solid fa-comments"></i>
+        </div>
+        <div class="chatbot-window glass-panel hide" id="chatbot-window">
+            <div class="chatbot-header">
+                <span><i class="fa-solid fa-robot"></i> Haven Assistant</span>
+                <i class="fa-solid fa-xmark close-chat" id="close-chat"></i>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="bot-message">Hello! I'm Haven. How can I assist you with your booking today?</div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chat-input" placeholder="Type your question...">
+                <button id="send-btn" class="btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
